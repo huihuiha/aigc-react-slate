@@ -16,6 +16,7 @@ import { withHistory } from "slate-history";
 import { LinkElement, ButtonElement } from "./custom-types";
 
 import { Button, Icon, Toolbar } from "../Base";
+import "./index.less";
 
 const initialValue: Descendant[] = [
   {
@@ -96,19 +97,23 @@ const InlinesExample = () => {
   };
 
   return (
-    <Slate editor={editor} initialValue={initialValue}>
-      <Toolbar>
-        <AddLinkButton />
-        <RemoveLinkButton />
-        <ToggleEditableButtonButton />
-      </Toolbar>
-      <Editable
-        renderElement={(props) => <Element {...props} />}
-        renderLeaf={(props) => <Text {...props} />}
-        placeholder="Enter some text..."
-        onKeyDown={onKeyDown}
-      />
-    </Slate>
+    <>
+      <Slate editor={editor} initialValue={initialValue}>
+        <Toolbar>
+          <AddLinkButton />
+          <RemoveLinkButton />
+          <ToggleEditableButtonButton />
+        </Toolbar>
+        <Editable
+          className="editor"
+          renderElement={(props) => <Element {...props} />}
+          renderLeaf={(props) => <Text {...props} />}
+          placeholder="Enter some text..."
+          onKeyDown={onKeyDown}
+        />
+      </Slate>
+      <input type="text" className="input" />
+    </>
   );
 };
 
