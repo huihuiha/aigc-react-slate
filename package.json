@@ -13,6 +13,8 @@
     "@emotion/css": "^11.11.2",
     "@types/is-hotkey": "^0.1.10",
     "@types/is-url": "^1.2.32",
+    "antd": "^5.12.2",
+    "classnames": "^2.3.2",
     "is-hotkey": "^0.2.0",
     "is-url": "^1.2.4",
     "react": "^18.2.0",
