@@ -3,7 +3,7 @@ import { useEditor } from "../../hooks/useEditor";
 
 import ToolBar from "../ToolBar";
 
-import { EDITOR_INITIAL_VALUE } from "../../common/constant";
+import { EDITOR_INITIAL_VALUE } from "@/common/constant";
 import { useState } from "react";
 
 const AISlate = () => {

@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "baseUrl": ".", // 为了让 tsconfig.json 中的 paths 起作用，必须设置 baseUrl
     "target": "ES2020",
     "useDefineForClassFields": true,
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
@@ -21,9 +22,9 @@
     "noFallthroughCasesInSwitch": true,
     "noImplicitAny": false, // 关闭 noImplicitAny
     "paths": {
-      "@/": ["./src/*"]
+      "@/*": ["src/*"],
     }
   },
-  "include": ["demo"],
+  "include": ["./src"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
