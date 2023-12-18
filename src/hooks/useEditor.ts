@@ -21,20 +21,20 @@ export function useEditor() {
    * 粘贴
    */
   const onPasteText = () => {
-    navigator.clipboard
-      .readText()
-      .then((text) => {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const text = await navigator.clipboard.readText();
         const { selection } = editor;
 
-        console.log("粘贴板的内容", text);
         if (!selection) return;
 
-        // Transforms.delete(editor, { at: selection });
+        Transforms.delete(editor, { at: selection });
         Transforms.insertText(editor, text, { at: selection?.focus });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+        resolve(text);
+      } catch (error) {
+        reject(error);
+      }
+    });
   };
 
   return {
