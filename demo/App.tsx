@@ -1,11 +1,9 @@
-import { AISlate } from "../src";
+import { Editor } from "../src";
 
 function App() {
   return (
     <>
-      {/* 测试 */}
-
-      <AISlate></AISlate>
+      <Editor></Editor>
     </>
   );
 }

@@ -1,4 +1,4 @@
-import AISlate from "./AISlate";
+import Editor from "./Editor";
 import ToolBar from "./ToolBar";
 
-export { AISlate, ToolBar };
+export { Editor, ToolBar };

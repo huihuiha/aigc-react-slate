@@ -1,8 +1,11 @@
 import { FC, useEffect, useRef } from "react";
-
+import copyIcon from "@/common/images/copy.svg";
+import pasteIcon from "@/common/images/paste.svg";
+import { Divider } from "antd";
+import cls from "classnames";
+import "./index.less";
 import { useFocused, useSlate } from "slate-react";
 import { Editor, Range } from "slate";
-import "./index.less";
 
 type Position = {
   left: number;
@@ -16,23 +19,23 @@ type Position = {
 type IProps = {
   selectedText: string;
   position: Position;
-  show: boolean;
-  //   onHandleOperate: (type: EditorOperation, value: any) => void;
   onCopy: () => void;
   onParse: () => void;
 };
 
-const ToolBar: FC<IProps> = ({ position, onParse, show }) => {
+const Menu: FC<IProps> = ({ selectedText, position, onCopy, onParse }) => {
   const inFocus = useFocused();
   const editor = useSlate();
 
   const ref = useRef<HTMLDivElement | null>(null);
 
-  const handleParse = (event: any) => {
+  const handleCopy = () => {
+    onCopy();
+  };
+
+  const handleParse = (event) => {
     event.preventDefault();
     event.stopPropagation();
-
-    console.log("parse", "ggggggggg");
     onParse();
   };
 
@@ -45,11 +48,12 @@ const ToolBar: FC<IProps> = ({ position, onParse, show }) => {
     }
 
     if (
-      (!selection ||
-        !inFocus ||
-        Range.isCollapsed(selection) ||
-        Editor.string(editor, selection) === "") &&
-      !show
+      !selection ||
+      !inFocus ||
+      Range.isCollapsed(selection) ||
+      Editor.string(editor, selection) === "" ||
+      position.left === 0 ||
+      position.top === 0
     ) {
       el.removeAttribute("style");
       return;
@@ -61,12 +65,30 @@ const ToolBar: FC<IProps> = ({ position, onParse, show }) => {
   });
 
   return (
-    <div ref={ref} className="tool-bar">
-      <div className="tool-bar-item" onMouseDown={handleParse}>
-        <div className="tip">粘贴</div>
+    <>
+      <div ref={ref} className="tool-bar">
+        {/* 复制 */}
+        <div
+          className={cls("tool-bar-item", {
+            disabled: !selectedText,
+          })}
+          onClick={handleCopy}
+        >
+          <img className="img" src={copyIcon} />
+          <div className="tip">复制</div>
+        </div>
+
+        <Divider type="vertical" style={{ backgroundColor: "#999" }} />
+        {/* 粘贴 */}
+        <div className={cls("tool-bar-item")} onMouseDown={handleParse}>
+          <img className="img" src={pasteIcon} />
+          <div className="tip">替换</div>
+        </div>
+
+        <Divider type="vertical" style={{ backgroundColor: "#999" }} />
       </div>
-    </div>
+    </>
   );
 };
 
-export default ToolBar;
+export default Menu;
