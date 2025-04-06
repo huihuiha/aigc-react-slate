@@ -1,30 +1,51 @@
-# React + TypeScript + Vite
+# SSML Slate Editor
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+基于 Slate.js 的 SSML 编辑器，使用 pnpm workspace 组织的 monorepo 结构。
 
-Currently, two official plugins are available:
+## 项目结构
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+```
+ssml-slate/
+├── packages/              # 核心包
+│   └── core/              # 编辑器核心功能
+├── examples/              # 示例应用
+│   └── demo/              # 示例应用
+├── pnpm-workspace.yaml    # 工作空间配置
+└── package.json           # 根项目配置
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## 功能模块
+
+- [ ] 编辑器
+- [ ] 工具栏
+- [ ] 对话框
+
+## 开发
+
+### 环境要求
+
+- Node.js 16+
+- pnpm 8+
+
+### 安装依赖
+
+```bash
+pnpm install
+```
+
+### 开发模式
+
+```bash
+# 开发所有包
+pnpm dev
+
+# 开发特定包
+pnpm --filter @ssml-slate/core dev
+pnpm --filter @ssml-slate/demo dev
+```
+
+### 构建
+
+```bash
+pnpm build
+```
