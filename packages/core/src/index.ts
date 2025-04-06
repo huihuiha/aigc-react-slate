@@ -1,3 +1,7 @@
+// 导出AiEditor类
+import AiEditor from "./common/AiEditor";
+export { AiEditor };
+
 // 导出组件
 export * from "./components";
 
